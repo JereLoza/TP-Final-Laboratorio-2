@@ -17,6 +17,12 @@ typedef struct{
     int estado; // (1- Activo 2- Retirado)
 }stAstronauta;
 
+typedef struct{
+    stAstronauta astronauta;
+    struct arbolAstronautas* izq;
+    struct arbolAstronautas* der;
+}arbolAstronautas;
+
 stAstronauta crearAstronauta();
 int ultimoAstronautaID(char nombreArch[]);
 void mostrarAstronauta(stAstronauta astronauta);

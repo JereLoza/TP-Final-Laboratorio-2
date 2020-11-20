@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1605161747 source:d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\main.c
+1605910932 source:d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\main.c
 	<stdio.h>
 	<stdlib.h>
 
@@ -19,5 +19,5 @@
 	"string.h"
 	"astronauta.h"
 
-1605161745 d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\astronauta.h
+1605910916 d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\astronauta.h
 

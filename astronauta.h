@@ -23,8 +23,16 @@ typedef struct{
     struct arbolAstronautas* der;
 }arbolAstronautas;
 
-stAstronauta crearAstronauta();
-int ultimoAstronautaID(char nombreArch[]);
+arbolAstronautas* inicArbol();
+arbolAstronautas* nuevoNodoArbol(stAstronauta dato);
+stAstronauta crearAstronauta(arbolAstronautas* arbol);
+stAstronauta masDerecha(arbolAstronautas* arbol);
+arbolAstronautas* ingresarAstronautas(arbolAstronautas* arbol);
+arbolAstronautas* insertarArbol(arbolAstronautas* arbol, stAstronauta dato);
+void mostrarArbol(arbolAstronautas* arbol);
 void mostrarAstronauta(stAstronauta astronauta);
+arbolAstronautas* archToArbol(arbolAstronautas* arbol, char nombreArch[]);
+char pideApodo();
+arbolAstronautas* buscaAstronautaPorApodo(arbolAstronautas* arbol, char apodo[]);
 
 #endif // ASTRONAUTA_H_INCLUDED

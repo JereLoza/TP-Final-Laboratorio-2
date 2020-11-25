@@ -1,23 +1,31 @@
 # depslib dependency file v1.0
-1605910932 source:d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\main.c
+1606176792 source:d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\main.c
 	<stdio.h>
 	<stdlib.h>
+	"astronauta.h"
 
 1605160590 source:d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\mision.c
 	"mision.h"
 
-1605161956 d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\mision.h
+1606165996 d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\mision.h
+	"astronauta.h"
 
 1605160589 source:d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\nave.c
 	"nave.h"
 
 1605161963 d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\nave.h
 
-1605161728 source:d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\astronauta.c
+1606277170 source:d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\astronauta.c
 	<stdio.h>
 	<stdlib.h>
 	"string.h"
 	"astronauta.h"
+	"extras.h"
 
-1605910916 d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\astronauta.h
+1606278175 d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\astronauta.h
+
+1606166840 source:d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\extras.c
+	"extras.h"
+
+1606166838 d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\extras.h
 

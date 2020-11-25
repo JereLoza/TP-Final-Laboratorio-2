@@ -2,11 +2,40 @@
 #include <stdlib.h>
 #include "string.h"
 #include "astronauta.h"
+#include "extras.h"
 
-stAstronauta crearAstronauta(){
+
+/*********************************************************************//**
+*
+* \brief Inicia un arbol en nulo
+* \return NULL
+*
+**************************************************************************/
+arbolAstronautas* inicArbol(){
+    return NULL;
+}
+
+/*********************************************************//**
+*
+* \brief Crea un nodo para un arbol
+* \param estructura stAstronauta
+* \return arbolAstronautas*
+*
+*************************************************************/
+arbolAstronautas* nuevoNodoArbol(stAstronauta dato){
+    arbolAstronautas* nuevo = (arbolAstronautas*) malloc(sizeof(arbolAstronautas));
+
+    nuevo->astronauta = dato;
+    nuevo->der = NULL;
+    nuevo->izq = NULL;
+
+    return nuevo;
+}
+
+stAstronauta crearAstronauta(arbolAstronautas* arbol){
     stAstronauta astronauta;
 
-    astronauta.id = ultimoAstronautaID(ARCH_ASTRONAUTAS);
+    astronauta.id = NULL;
 
     printf("\nIngrese el nombre del astronauta: ");
     fflush(stdin);
@@ -16,9 +45,15 @@ stAstronauta crearAstronauta(){
     fflush(stdin);
     gets(astronauta.apellido);
 
-    printf("\nIngrese el apodo del astronauta: ");
-    fflush(stdin);
-    gets(astronauta.apodo);
+    do{
+        printf("\nIngrese el apodo del astronauta: ");
+        fflush(stdin);
+        gets(astronauta.apodo);
+
+        if(buscaAstronautaPorApodo(arbol, astronauta.apodo)){
+            rojo("\nYa existe un astronauta con ese apodo! Ingresa uno distinto!\n");
+        }
+    }while(buscaAstronautaPorApodo(arbol, astronauta.apodo));
 
     printf("\nIngrese la edad del astronauta: ");
     scanf("%i", &astronauta.edad);
@@ -46,25 +81,81 @@ stAstronauta crearAstronauta(){
     return astronauta;
 }
 
-int ultimoAstronautaID(char nombreArch[]){
-    stAstronauta astronauta;
-    int id = -1;
+stAstronauta masDerecha(arbolAstronautas* arbol){
+    stAstronauta masDer;
 
-    FILE *pArchAstronautas = fopen(nombreArch, "rb");
-
-    if(pArchAstronautas){
-        fseek(pArchAstronautas, sizeof(stAstronauta) * (-1), SEEK_END);
-        if(fread(&astronauta, sizeof(stAstronauta), 1, pArchAstronautas) > 0){
-            id = astronauta.id;
+    if(arbol){
+        while(arbol->der != NULL){
+            arbol = arbol->der;
         }
-
-        fclose(pArchAstronautas);
     }
 
-    id++;
-    return id;
+    return arbol->astronauta;
 }
 
+arbolAstronautas* ingresarAstronautas(arbolAstronautas* arbol){
+    char opcion = 's';
+    stAstronauta astronauta;
+    stAstronauta ultAstronauta;
+    int ultimoID;
+
+    do{
+        system("cls");
+        printf("\tSpace X - Nuevo astronauta\n\n");
+
+        astronauta = crearAstronauta(arbol);
+
+        if(arbol){
+            ultAstronauta = masDerecha(arbol);
+            astronauta.id = ultAstronauta.id + 1;
+        } else{
+            astronauta.id = 0;
+        }
+
+        arbol = insertarArbol(arbol, astronauta);
+
+        printf("\n\nDesea a%cadir otro astronauta? s/n\n", LETRA_ENIE);
+        fflush(stdin);
+        opcion = getch();
+
+    }while(opcion == 's');
+
+
+    return arbol;
+}
+
+arbolAstronautas* insertarArbol(arbolAstronautas* arbol, stAstronauta dato){
+    if(!arbol){
+        arbol = nuevoNodoArbol(dato);
+    }
+    else{
+        if(strcmpi(dato.apodo, arbol->astronauta.apodo) > 0){
+            arbol->der = insertarArbol(arbol->der, dato);
+        } else{
+            arbol->izq = insertarArbol(arbol->izq, dato);
+        }
+    }
+
+    return arbol;
+}
+
+void mostrarArbol(arbolAstronautas* arbol){
+    if(arbol){
+        mostrarArbol(arbol->izq);
+        mostrarAstronauta(arbol->astronauta);
+        mostrarArbol(arbol->der);
+    }
+}
+
+
+
+/*********************************************************//**
+*
+* \brief Muestra un astronauta
+* \param arreglo stAstronauta
+* \return void
+*
+*************************************************************/
 void mostrarAstronauta(stAstronauta astronauta){
     printf("\n -----------------------------------------------------");
     printf("\n  ID:                          %i", astronauta.id);
@@ -80,3 +171,48 @@ void mostrarAstronauta(stAstronauta astronauta){
     printf("\n  Estado:                      %i", astronauta.estado);
     printf("\n -----------------------------------------------------\n");
 }
+
+arbolAstronautas* archToArbol(arbolAstronautas* arbol, char nombreArch[]){
+    stAstronauta aux;
+
+    FILE *pArchArbol = fopen(nombreArch, "rb");
+
+    if(pArchArbol){
+        while(fread(&aux, sizeof(stAstronauta), 1, pArchArbol) > 0){
+            arbol = insertarArbol(arbol, aux);
+        }
+
+        fclose(pArchArbol);
+    }
+
+    return arbol;
+}
+
+char pideApodo(){
+    char apodo[50];
+
+    printf("Introduce el apodo del astronauta que desea buscar: ");
+    fflush(stdin);
+    gets(apodo);
+
+    return apodo;
+}
+
+arbolAstronautas* buscaAstronautaPorApodo(arbolAstronautas* arbol, char apodo[]){
+    arbolAstronautas* rta = NULL;
+
+    if(arbol){
+        if(strcmpi(apodo, arbol->astronauta.apodo) == 0){
+            rta = arbol;
+        }else{
+            if(strcmpi(apodo, arbol->astronauta.apodo) > 0){
+                rta = buscaAstronautaPorApodo(arbol->der, apodo);
+            }else{
+                rta = buscaAstronautaPorApodo(arbol->izq, apodo);
+            }
+        }
+    }
+
+    return rta;
+}
+

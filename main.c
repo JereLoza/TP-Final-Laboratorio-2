@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+///INCLUIR LAS LIBRERIAS
+
+#include "astronauta.h"
 
 #define ESC 27
 #define ARCH_MISIONES "archMisiones.dat"
@@ -51,6 +54,8 @@ void menuPrincipal(){
 void menuAstronauta(){
     char opcion;
 
+    arbolAstronautas* arbolAstronauta = inicArbol();
+
     do{
         system("cls");
         textoMenuAstronauta();
@@ -59,7 +64,7 @@ void menuAstronauta(){
 
         switch(opcion){
             case 'a':
-                /// ACA IRIA LA CARGA DE NUEVO ASTRONAUTA
+                arbolAstronauta = ingresarAstronautas(arbolAstronauta);
             break;
             case 'b':
                 /// ACA SE BORRARIAN LOS ASTRONAUTAS
@@ -68,10 +73,11 @@ void menuAstronauta(){
                 /// ACA IRIA LA MODIFICACION DE UN ASTRONAUTA
             break;
             case 'd':
-                /// ACA SE BUSCARIA UN ASTRONAUTA DADO
+                //mostrarAstronauta((buscaAstronautaPorApodo(arbolAstronauta, pideApodo()))->astronauta);
             break;
             case 'e':
-                /// ACA SE MOSTRARIAN LOS ASTRONAUTAS DISPONIBLES
+                printf("Space X - Astronautas registrados");
+                mostrarArbol(arbolAstronauta);
             break;
         }
 

@@ -29,3 +29,27 @@
 
 1606166838 d:\users\alex jeremías loza\documents\utn\primer año\segundo cuantrimestre\programacion y laboratorio 2\tp-final-laboratorio-2\extras.h
 
+1606289047 source:d:\users\usuario\documents\github\tp-final-laboratorio-2\astronauta.c
+	<stdio.h>
+	<stdlib.h>
+	"string.h"
+	"astronauta.h"
+	"extras.h"
+
+1606289047 d:\users\usuario\documents\github\tp-final-laboratorio-2\astronauta.h
+
+1606289047 d:\users\usuario\documents\github\tp-final-laboratorio-2\extras.h
+
+1606289047 source:d:\users\usuario\documents\github\tp-final-laboratorio-2\extras.c
+	"extras.h"
+
+1606346853 source:d:\users\usuario\documents\github\tp-final-laboratorio-2\main.c
+	<stdio.h>
+	<stdlib.h>
+	"astronauta.h"
+
+1605163044 source:d:\users\usuario\documents\github\tp-final-laboratorio-2\nave.c
+	"nave.h"
+
+1605163044 d:\users\usuario\documents\github\tp-final-laboratorio-2\nave.h
+

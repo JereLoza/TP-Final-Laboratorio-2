@@ -62,7 +62,7 @@ int retIDNave (nodoMision* nuevo)
     return aux;
 }
 
-nodoMision* modificarxID(int id, nodoMision* lista, arbolAstronautas* arbol)
+stMision modificarxID(stMision cual)
 {
     char continuar;
     char continuar2;
@@ -70,10 +70,6 @@ nodoMision* modificarxID(int id, nodoMision* lista, arbolAstronautas* arbol)
     char ayuda2[30];
     tripulantes* tripulanteElim;
 
-    if(lista)
-    {
-        if(id == lista->nuevo.id)
-        {
             do
             {
                 system("cls");
@@ -85,15 +81,15 @@ nodoMision* modificarxID(int id, nodoMision* lista, arbolAstronautas* arbol)
                 {
                     case 'a':
                         printf("Ingrese el nuevo ESTADO: \t");
-                        gets(&lista->nuevo.estado);
+                        gets(&cual.estado);
                     break;
                     case 'b':
                         printf("Ingrese el nuevo DESTINO: \t");
-                        gets(&lista->nuevo.destino);
+                        gets(&cual.destino);
                     break;
                     case 'c':
                         printf("Ingrese el nuevo CARGAMENTO: \t");
-                        gets(&lista->nuevo.cargamento);
+                        gets(&cual.cargamento);
                     break;
                     case 'd':
                         system("cls");
@@ -104,13 +100,13 @@ nodoMision* modificarxID(int id, nodoMision* lista, arbolAstronautas* arbol)
                         case 'a':
                         printf("Ingrese el nombre del Astronauta\t");
                         gets(&ayuda2);
-                        agregarPpioTripu(lista->nuevo.equipo,crearNodoTripulantes(buscaAstronautaPorApodo(arbol,ayuda2)));
+                        tripulanteElim = agregarPpioTripu(cual.equipo,crearNodoTripulantes(buscaAstronautaPorApodo(arbol,ayuda2)));
                         break;
                         case 'b':
-                        mostrarTripulantes(lista->nuevo.equipo);
+                        mostrarTripulantes(cual.equipo);
                         printf("ingrese el id del tripulante que desea eliminar: \t");
                         scanf("%d", &ayuda);
-                        tripulanteElim = borrarxID(lista->nuevo.equipo, ayuda);
+                        tripulanteElim = borrarxID(cual.equipo, ayuda);
                         break;
                         }
                         }while(continuar2 != ESC);
@@ -118,16 +114,11 @@ nodoMision* modificarxID(int id, nodoMision* lista, arbolAstronautas* arbol)
                     break;
                     case 'e':
                         printf("Ingrese el nuevo DETALLE DE MISION: \t");
-                        gets(&lista->nuevo.detalleMision);
+                        gets(&cual.detalleMision);
                     break;
                 }
             } while(continuar != ESC);
-        }
-        else
-        {
-            lista = modificarxID(id, lista->ste);
-        }
-    }
+
     return lista;
 }
 

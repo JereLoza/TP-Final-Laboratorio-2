@@ -179,15 +179,82 @@ int buscarUltimaIDNave (filaMision* fila)
     return aux;
 }
 
-filaMision* cambiarEstado(int id, filaMision* fila)
+stMision cambiarEstado(stMision xd)
 {
+    nodoMision* aux;
     if(fila)
     {
-        if(id )
+        aux = buscarNodo(id,fila->cabecera);
     }
+     aux = modificarxID(id,aux,);
+
 }
 
-///TRIPULANTES ------------------------------------------------------------------------------------
+nodoMision* buscarNodo(int id, nodoMision* aux)
+{
+    while (id != aux->nuevo.id)
+    {
+        aux = aux->ste;
+    }
+
+    return aux
+}
+void cambioDeEstado (nodoMision* lista, char nombreArch[], int ID)
+{
+    stMision aux;
+    int flag = 0;
+
+    FILE* pArchLista = fopen(nombreArch,"r+b");
+
+    if(pArchLista)
+    {
+        while ((flag == 0) && fread(&aux,sizeof(stMision),1,pArchLista)>0)
+        {
+            if(aux.id == ID)
+            {
+                flag = 1;
+            }
+        }
+         aux = modificarxID(aux);
+         fseek(pArchLista, sizeof(stMision)* (-1),1);
+         fwrite(&aux,sizeof(stMision),1, pArchLista);
+
+        fclose(pArchLista);
+    }
+}
+void archTofilaMision (filaMision* fila, char nombreArch[])
+{
+    stMision aux;
+
+    FILE *pArchFila = fopen(nombreArch, "rb");
+
+    if(pArchFila){
+        while(fread(&aux, sizeof(stMision), 1, pArchFila) > 0){
+            fila->cabecera = agregarFinal(fila->cabecera, nuevoNodo(aux));
+        }
+              fseek(pArchFila, sizeof(stMision) * (-1), SEEK_END);
+              fread(&aux, sizeof(stMision))
+              fila->fin = nuevoNodo(aux);
+        fclose(pArchFila);
+    }
+
+}
+
+void filaMisionToArch(nodoMision* cabecera, char nombreArch[]){
+    stMision aux;
+
+    FILE *pArchFila = fopen(nombreArch, "ab");
+
+    if(pArchFila){
+            while(aux != NULL){
+                fwrite(&(cabecera.nuevo), sizeof(nodoMision), 1 , pArchFila); ///El fin de la cola siempre va al final del archivo.
+                cabecera = cabecera->ste;
+            }
+
+        fclose(pArchFila);
+    }
+
+///TRIPULANTES------------------------------------------------------------------------------------
 
 tripulantes* crearNodoTripulantes(stAstronauta nuevo)
 {
